@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="-IQiUklqD3v9eTijgRBpjtZuD54mHw2O4L08LzkmMrU" />
+<script src="/cdn-cgi/apps/head/l1IOMXCIMVHi-i6F9UHpOqt_j1Y.js"></script><link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="icon" type="image/png" href="https://codeforgeek.com/wp-content/themes/codeforgeek/img/favicon.png">
+<title>Handle GET and POST Request in Express 4 | Codeforgeek</title>
+
+<meta name="description" content="POST and GET are two common HTTP Request used for building REST API&#039;s. Both of these call&#039;s are meant for some special purpose. As per the documentation" />
+<link rel="canonical" href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" />
+<link rel="publisher" href="https://plus.google.com/+ShaikhShahid/posts" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Handle GET and POST Request in Express 4 | Codeforgeek" />
+<meta property="og:description" content="POST and GET are two common HTTP Request used for building REST API&#039;s. Both of these call&#039;s are meant for some special purpose. As per the documentation" />
+<meta property="og:url" content="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" />
+<meta property="og:site_name" content="Codeforgeek" />
+<meta property="article:publisher" content="https://www.facebook.com/codeforgeek" />
+<meta property="article:author" content="https://www.facebook.com/s2v92" />
+<meta property="article:tag" content="Ajax" />
+<meta property="article:tag" content="Express" />
+<meta property="article:tag" content="Node.js" />
+<meta property="article:tag" content="Tutorial" />
+<meta property="article:tag" content="Web development" />
+<meta property="article:section" content="Express tutorials" />
+<meta property="article:published_time" content="2014-09-15T23:50:53+00:00" />
+<meta property="article:modified_time" content="2015-12-15T11:00:26+00:00" />
+<meta property="og:updated_time" content="2015-12-15T11:00:26+00:00" />
+<meta property="og:image" content="https://i1.wp.com/codeforgeek.com/wp-content/uploads/2014/09/banner3.png?fit=640%2C400&#038;ssl=1" />
+<meta property="og:image:secure_url" content="https://i1.wp.com/codeforgeek.com/wp-content/uploads/2014/09/banner3.png?fit=640%2C400&#038;ssl=1" />
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="400" />
+<meta property="og:image:alt" content="GET and POST Request Express" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="POST and GET are two common HTTP Request used for building REST API&#039;s. Both of these call&#039;s are meant for some special purpose. As per the documentation" />
+<meta name="twitter:title" content="Handle GET and POST Request in Express 4 | Codeforgeek" />
+<meta name="twitter:site" content="@codeforgeek" />
+<meta name="twitter:image" content="https://i1.wp.com/codeforgeek.com/wp-content/uploads/2014/09/banner3.png?fit=640%2C400&#038;ssl=1" />
+<meta name="twitter:creator" content="@codeforgeek" />
+<script type='application/ld+json'>{"@context":"https:\/\/schema.org","@type":"Organization","url":"https:\/\/codeforgeek.com\/","sameAs":["https:\/\/www.facebook.com\/codeforgeek","https:\/\/plus.google.com\/+ShaikhShahid\/posts","https:\/\/twitter.com\/codeforgeek"],"@id":"https:\/\/codeforgeek.com\/#organization","name":"Codeforgeek","logo":"https:\/\/codeforgeek.com\/wp-content\/uploads\/2018\/01\/codeforgeek-logo.png"}</script>
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Codeforgeek &raquo; Feed" href="https://codeforgeek.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Codeforgeek &raquo; Comments Feed" href="https://codeforgeek.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Codeforgeek &raquo; Handle GET and POST Request in Express 4 Comments Feed" href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/feed/" />
+<script type="eb3def1fc5234d3e0e179421-text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.4\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/codeforgeek.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.6"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56692,8205,9792,65039],[55357,56692,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='pmpro_frontend-css' href='https://codeforgeek.com/wp-content/plugins/paid-memberships-pro/css/frontend.css?ver=1.9.5' type='text/css' media='screen' />
+<link rel='stylesheet' id='pmpro_print-css' href='https://codeforgeek.com/wp-content/plugins/paid-memberships-pro/css/print.css?ver=1.9.5' type='text/css' media='print' />
+<link rel='stylesheet' id='wordpress-popular-posts-css-css' href='https://codeforgeek.com/wp-content/plugins/wordpress-popular-posts/public/css/wpp.css?ver=4.1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='codeforgeek-style-css' href='https://codeforgeek.com/wp-content/themes/codeforgeek/style.css?ver=4.9.6' type='text/css' media='all' />
+<link rel='stylesheet' id='codeforgeek-font-style-css' href='https://fonts.googleapis.com/css?family=Open+Sans&#038;ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='codeforgeek-slick-style-css' href='https://codeforgeek.com/wp-content/themes/codeforgeek/less/vendor/slick.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='codeforgeek-nano-style-css' href='https://codeforgeek.com/wp-content/themes/codeforgeek/less/vendor/nanoscroller.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='codeforgeek-materialicons-style-css' href='https://fonts.googleapis.com/icon?family=Material+Icons&#038;ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='codeforgeek-main-style-css' href='https://codeforgeek.com/wp-content/uploads/wp-less/codeforgeek/less/style-3e6260987c.css?v=1&#038;ver=1.2.0' type='text/css' media='all' />
+
+<style id='jetpack_facebook_likebox-inline-css' type='text/css'>
+.widget_facebook_likebox {
+	overflow: hidden;
+}
+
+</style>
+<link rel='stylesheet' id='jetpack-widget-social-icons-styles-css' href='https://codeforgeek.com/wp-content/plugins/jetpack/modules/widgets/social-icons/social-icons.css?ver=20170506' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css' href='https://codeforgeek.com/wp-content/plugins/jetpack/css/jetpack.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='codecolorer-css' href='https://codeforgeek.com/wp-content/plugins/codecolorer/codecolorer.css?ver=0.9.14' type='text/css' media='screen' />
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript">
+/* <![CDATA[ */
+var wpp_params = {"rest_api":"1","sampling_active":"0","sampling_rate":"100","ajax_url":"https:\/\/codeforgeek.com\/wp-json\/wordpress-popular-posts\/v1\/popular-posts\/","action":"update_views_ajax","ID":"433","token":"5c2f1608d8","debug":""};
+/* ]]> */
+</script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/plugins/wordpress-popular-posts/public/js/wpp-4.1.0.min.js?ver=4.1.0'></script>
+<link rel='https://api.w.org/' href='https://codeforgeek.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://codeforgeek.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://codeforgeek.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 4.9.6" />
+<link rel='shortlink' href='https://wp.me/p4ISPV-6Z' />
+<link rel="alternate" type="application/json+oembed" href="https://codeforgeek.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcodeforgeek.com%2F2014%2F09%2Fhandle-get-post-request-express-4%2F" />
+
+
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel='dns-prefetch' href='//i1.wp.com' />
+<link rel='dns-prefetch' href='//i2.wp.com' />
+<style type='text/css'>img#wpstats{display:none}</style><link rel="pingback" href="https://codeforgeek.com/xmlrpc.php"> <style type="text/css" id="wp-custom-css">
+				.page-form form > p:nth-child(6) {
+    width: 100%;
+}			</style>
+</head>
+<body class="post-template-default single single-post postid-433 single-format-standard pmpro-body-has-access group-blog">
+<div id="page" class="site tstCls">
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+<header id="masthead" class="site-header auto_close" role="banner">
+<div class="h_scrollable nano">
+<div class="nano-content">
+<div class="site-branding">
+<div class="site-logo">
+<a href="https://codeforgeek.com">
+<img src="https://codeforgeek.com/wp-content/uploads/2016/12/codeforgeek-logo.png" />
+</a>
+</div>
+<p class="site-description">Programming Blog for Geeks</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+<div class="menu-main-menu-container"><ul id="primary-menu" class="primary-menu auto_close"><li id="menu-item-4444" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4444"><a href="https://codeforgeek.com/start-here/">Start Here</a></li>
+<li id="menu-item-2812" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2812"><a href="#">Topics</a>
+<ul class="sub-menu">
+<li id="menu-item-1814" class="has-icon cat-nodejs menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1814"><a href="https://codeforgeek.com/category/nodejs/">Node.js</a></li>
+<li id="menu-item-1792" class="has-icon cat-expressjs menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1792"><a href="https://codeforgeek.com/category/nodejs/express/">Express.js</a></li>
+<li id="menu-item-1785" class="has-icon cat-angularjs menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1785"><a href="https://codeforgeek.com/category/angularjs/">Angular.js</a></li>
+<li id="menu-item-2792" class="has-icon cat-meteorjs menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2792"><a href="https://codeforgeek.com/category/meteor/">Meteor.js</a></li>
+<li id="menu-item-2793" class="has-icon cat-sailsjs menu-item menu-item-type-custom menu-item-object-custom menu-item-2793"><a href="#">Sails.js</a></li>
+<li id="menu-item-2794" class="has-icon cat-mongodb menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2794"><a href="https://codeforgeek.com/category/database/mongodb/">MongoDB</a></li>
+<li id="menu-item-2796" class="has-icon cat-rethinkdb menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2796"><a href="https://codeforgeek.com/category/database/rethinkdb/">RethinkDB</a></li>
+<li id="menu-item-2795" class="has-icon cat-mysql menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2795"><a href="https://codeforgeek.com/category/database/mysql/">Mysql</a></li>
+<li id="menu-item-2800" class="has-icon cat-raspberrypi menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2800"><a href="https://codeforgeek.com/category/iot/raspberrypi/">RaspberryPI</a></li>
+</ul>
+</li>
+</ul></div> </nav>
+</div>
+</div>
+<ul class="social-links clear">
+<li><a class="social-icon si-facebook" href="https://www.facebook.com/codeforgeek" title="Facebook"></a></li>
+<li><a class="social-icon si-twitter" href="https://twitter.com/codeforgeek" title="Twittter"></a></li>
+<li><a class="social-icon si-googleplus" href="https://plus.google.com/u/0/+ShaikhShahid" title="Google+"></a></li>
+<li><a class="social-icon si-youtube" href="https://www.youtube.com/channel/UCqQZH0XpOdPC5ZOBWKePcWg" title="Youtube"></a></li>
+<li><a class="social-icon si-instagram" href="https://www.instagram.com/shahid_sk/" title="Instagram"></a></li>
+</ul>
+</header>
+
+<div class="top-bar-wrap">
+<div class="hor-pad top-bar">
+<div class="menu-toggle">
+<button class="opener" data-overlay="true" data-open="site-header"><i class="material-icons">menu</i></button>
+</div>
+<div class="small-logo">
+<a href="https://codeforgeek.com">
+<img src="https://codeforgeek.com/wp-content/uploads/2016/12/codeforgeek-logo-2.png" />
+</a>
+</div>
+<div class="search-wrap auto_close">
+<form id="searchform" method="get" action="https://codeforgeek.com/index.php">
+<input type="text" class="sw-search open_focus" placeholder="Search" name="s" id="s" />
+<button type="submit" class="sw-submit" /><i class="material-icons">search</i></button>
+</form>
+</div>
+<div class="search-toggle">
+<button class="opener" data-overlay="true" data-open="search-wrap"><i class="material-icons">search</i></button>
+</div>
+<div class="secondary-menu-wrap">
+<button class="secondary-menu-toggle opener" data-open="secondary-menu"><i class="material-icons">more_vert</i></button>
+<div class="menu-secondary-menu-container"><ul id="secondary-menu" class="secondary-menu auto_close"><li id="menu-item-2808" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2808"><a href="https://codeforgeek.com/best-programming-tutorial-of-the-blog/">Best Programming Tutorial</a></li>
+<li id="menu-item-4545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4545"><a href="https://codeforgeek.com/advertise-on-codeforgeek-media-kit/">Advertise with us</a></li>
+<li id="menu-item-2809" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2809"><a href="https://codeforgeek.com/request-programming-tutorial/">Contact Us</a></li>
+<li><a href="https://codeforgeek.com/wp-login.php" class="btn--login">LogIn</a></li><li><a href="https://codeforgeek.com/wp-login.php?action=register" class="btn--signup">Sign Up</a></li></ul></div> </div>
+</div>
+</div>
+<div id="content" class="site-content">
+<div class="content-sidebar full-pad">
+<div id="primary" class="content-area">
+<main id="main" class="site-main" role="main">
+<div class="ad_top">
+<section id="text-18" class="widget widget_text"> <div class="textwidget">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="eb3def1fc5234d3e0e179421-"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1093991142748141" data-ad-slot="5209435728" data-ad-format="auto"></ins>
+<script type="eb3def1fc5234d3e0e179421-">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</section> </div>
+<article id="post-433" class="post-433 post type-post status-publish format-standard has-post-thumbnail hentry category-express category-nodejs category-tutorial tag-ajax tag-express tag-node-js tag-tutorial tag-web-development pmpro-has-access">
+<header class="entry-header">
+<div class="entry-image">
+<img width="640" height="385" src="https://i1.wp.com/codeforgeek.com/wp-content/uploads/2014/09/banner3.png?resize=640%2C385&amp;ssl=1" class="attachment-post-single-thumb size-post-single-thumb wp-post-image" alt="GET and POST Request Express" srcset="https://i1.wp.com/codeforgeek.com/wp-content/uploads/2014/09/banner3.png?zoom=2&amp;resize=640%2C385&amp;ssl=1 1280w, https://i1.wp.com/codeforgeek.com/wp-content/uploads/2014/09/banner3.png?zoom=3&amp;resize=640%2C385&amp;ssl=1 1920w" sizes="(max-width: 640px) 100vw, 640px" /> <div class="cat-links"><ul class="post-categories">
+<li><a href="https://codeforgeek.com/category/nodejs/express/" rel="category tag">Express tutorials</a></li>
+<li><a href="https://codeforgeek.com/category/nodejs/" rel="category tag">Node.js tutorials</a></li>
+<li><a href="https://codeforgeek.com/category/tutorial/" rel="category tag">Tutorial</a></li></ul></div> </div>
+<h1 class="entry-title">Handle GET and POST Request in Express 4</h1> <ul class="social-share">
+<li>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;" class="ss-facebook"><span>Share on Facebook</span></a>
+</li>
+<li>
+<a href="https://twitter.com/intent/tweet?source=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/&text=Handle GET and POST Request in Express 4" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;" class="ss-twitter"><span>Tweet This</span></a>
+</li>
+<li>
+<a href="https://plus.google.com/share?url=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;" class="ss-googleplus"><span>Share on Google+</span></a>
+</li>
+<li>
+<a href="http://pinterest.com/pin/create/button/?url=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/&description=Handle GET and POST Request in Express 4" target="_blank" title="Pin it" onclick="window.open('http://pinterest.com/pin/create/button/?url=' + encodeURIComponent(document.URL) + '&description=' +  encodeURIComponent(document.title)); return false;" class="ss-pinterest"><span>Pin This</span></a>
+</li>
+</ul>
+<div class="entry-meta">
+<ul class="em-list tbl">
+<li class="em-photo">
+</li>
+<li>
+<label>Author</label>
+<p><span class="author vcard"><a class="url fn n" href="https://codeforgeek.com/author/shahid/">Shahid (UnixRoot) Shaikh</a></span></p>
+</li>
+<li>
+<label>Last Edited</label>
+<p><a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" rel="bookmark"><time class="entry-date published" datetime="2014-09-15T23:50:53+00:00">Sep 15, 2014</time></a></p>
+</li>
+<li>
+<label>Comments</label>
+<p>49</p>
+</li>
+</ul>
+</div>
+</header>
+<div class="entry-content">
+<p>POST and GET are two common HTTP Request used for building REST API&#8217;s. Both of these call&#8217;s are meant for some special purpose. </p>
+<p>As per the documentation GET request are meant to fetch data from specified resource and <a href="http://codeforgeek.com/2014/07/angular-post-request-php/" title="Angular Post Request to PHP" target="_blank">POST </a>are meant to submit data to a specified resource.<br />
+<center><a class="button-rounded button-flat-caution" href="https://www.youtube.com/watch?v=C3G3N4LMJeE&#038;list=UUqQZH0XpOdPC5ZOBWKePcWg" target="_blank"><i class="fa fa-code"></i>LIVE DEMO</a> <a class="button-rounded button-flat" href="https://github.com/codeforgeek/get-post-handle-express/archive/master.zip" target="_blank"><i class="fa fa-github"></i>DOWNLOAD</a></center><br />
+<a href="http://codeforgeek.com/code/nodejs/express/" title="Express Tutorials" target="_blank">Express </a>allows you to handle GET and POST request using the instance of express. Due to the depreciation of <strong>connect</strong> middle-ware handling POST request however seems confusing to many people.</p><div class="ad-post"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="eb3def1fc5234d3e0e179421-"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-1093991142748141" data-ad-slot="8080346929"></ins>
+<script type="eb3def1fc5234d3e0e179421-">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+<h2>GET request:</h2>
+<p>Handling GET request in Express seems so easy. You have to create instance of <strong>express </strong>and call <strong>get </strong>method. Here is small snippet to demonstrate that.</p>
+<div class="codecolorer-container javascript twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="javascript codecolorer"><span class="kw1">var</span> express &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;require<span class="br0">&#40;</span><span class="st0">&quot;express&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="kw1">var</span> app &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;express<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+app.<span class="kw1">get</span><span class="br0">&#40;</span><span class="st0">'handle'</span><span class="sy0">,</span><span class="kw1">function</span><span class="br0">&#40;</span>request<span class="sy0">,</span>response<span class="br0">&#41;</span><span class="br0">&#123;</span><br />
+<span class="co1">//code to perform particular action.</span><br />
+<span class="co1">//To access GET variable use.</span><br />
+<span class="co1">//request.var1, request.var2 etc</span><br />
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></div></div>
+<p>GET request can be cached and remains in browser history. This is why GET is not suppose to use for sensitive data (passwords, ATM pins etc). GET are suppose to use to retrieve data only.</p>
+<h2>POST Request:</h2>
+<p>Express version 4 and above requires extra middle-ware layer to handle POST request. This middle-ware is called as <strong>&#8216;bodyParser&#8217;. </strong>This used to be internal part of Express framework but now you have to install it separately.</p>
+<p>You can install <strong>bodyParser </strong>by two way. Either by mentioning it in <strong>package.json </strong>or simply executing following command to download and put it in package file.</p>
+<div class="codecolorer-container text twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">sudo npm install --save body-parser</div></div>
+<p>You have to import this package in your project and tell Express to use this as middle-ware. To do so here is a code.</p>
+<div class="codecolorer-container javascript twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="javascript codecolorer"><span class="kw1">var</span> express &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;require<span class="br0">&#40;</span><span class="st0">&quot;express&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="kw1">var</span> bodyParser &nbsp; &nbsp; <span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;require<span class="br0">&#40;</span><span class="st0">&quot;body-parser&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="kw1">var</span> app &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;express<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="co1">//Here we are configuring express to use body-parser as middle-ware.</span><br />
+app.<span class="me1">use</span><span class="br0">&#40;</span>bodyParser.<span class="me1">urlencoded</span><span class="br0">&#40;</span><span class="br0">&#123;</span> extended<span class="sy0">:</span> <span class="kw2">false</span> <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+app.<span class="me1">use</span><span class="br0">&#40;</span>bodyParser.<span class="me1">json</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></div></div>
+<p>Once configured you can use <strong>app.post </strong>express router to handle POST request. To access the POST query variable you can use <strong>request_variable.body.post_variable. </strong><br />
+Here is a snippet to demonstrate the code.</p>
+<div class="codecolorer-container text twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">app.post('handle',function(request,response){<br />
+var query1=request.body.var1;<br />
+var query2=request.body.var2;<br />
+});</div></div>
+<p>In this way you can handle the GET and POST request in Express 4.</p>
+<h2>Demo App : Login System</h2>
+<p>To demonstrate this i am going to code one simple log-in System which will use GET request to serve HTML page to client and POST request from client to send user name and password to Server. So let&#8217;s create our package.json file.</p>
+<div class="file_name"><strong>package.json</strong></div>
+<div class="codecolorer-container javascript twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="javascript codecolorer"><span class="br0">&#123;</span><br />
+&nbsp; <span class="st0">&quot;name&quot;</span><span class="sy0">:</span> <span class="st0">&quot;get-post-demo&quot;</span><span class="sy0">,</span><br />
+&nbsp; <span class="st0">&quot;version&quot;</span><span class="sy0">:</span> <span class="st0">&quot;0.0.1&quot;</span><span class="sy0">,</span><br />
+&nbsp; <span class="st0">&quot;dependencies&quot;</span><span class="sy0">:</span> <span class="br0">&#123;</span><br />
+&nbsp; &nbsp; <span class="st0">&quot;body-parser&quot;</span><span class="sy0">:</span> <span class="st0">&quot;^1.8.1&quot;</span><span class="sy0">,</span><br />
+&nbsp; &nbsp; <span class="st0">&quot;express&quot;</span><span class="sy0">:</span> <span class="st0">&quot;^4.9.0&quot;</span><br />
+&nbsp; <span class="br0">&#125;</span><br />
+<span class="br0">&#125;</span></div></div>
+<p>Install dependencies using</p>
+<div class="codecolorer-container text twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">npm install</div></div>
+<p>Next we will create Express web Server.</p>
+<div class="codecolorer-container javascript twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="javascript codecolorer"><span class="kw1">var</span> express &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;require<span class="br0">&#40;</span><span class="st0">&quot;express&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="kw1">var</span> bodyParser &nbsp; &nbsp; <span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;require<span class="br0">&#40;</span><span class="st0">&quot;body-parser&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="kw1">var</span> app &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp;express<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+app.<span class="me1">listen</span><span class="br0">&#40;</span><span class="nu0">3000</span><span class="sy0">,</span><span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><br />
+&nbsp; console.<span class="me1">log</span><span class="br0">&#40;</span><span class="st0">&quot;Started on PORT 3000&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="br0">&#125;</span><span class="br0">&#41;</span></div></div>
+<p>Run Server using</p>
+<div class="codecolorer-container text twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="text codecolorer">node server.js</div></div>
+<p>We will use Express Router to handle routes of app. So when user request the app from web browser, we will serve the HTML file.</p>
+<div class="codecolorer-container javascript twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="javascript codecolorer">app.<span class="kw1">get</span><span class="br0">&#40;</span><span class="st0">'/'</span><span class="sy0">,</span><span class="kw1">function</span><span class="br0">&#40;</span>req<span class="sy0">,</span>res<span class="br0">&#41;</span><span class="br0">&#123;</span><br />
+&nbsp; res.<span class="me1">sendfile</span><span class="br0">&#40;</span><span class="st0">&quot;index.html&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></div></div>
+<p>When user click on log-in button on HTML page we will POST request to Server and get the response.</p>
+<div class="codecolorer-container javascript twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="javascript codecolorer">app.<span class="me1">post</span><span class="br0">&#40;</span><span class="st0">'/login'</span><span class="sy0">,</span><span class="kw1">function</span><span class="br0">&#40;</span>req<span class="sy0">,</span>res<span class="br0">&#41;</span><span class="br0">&#123;</span><br />
+&nbsp; <span class="kw1">var</span> user_name<span class="sy0">=</span>req.<span class="me1">body</span>.<span class="me1">user</span><span class="sy0">;</span><br />
+&nbsp; <span class="kw1">var</span> password<span class="sy0">=</span>req.<span class="me1">body</span>.<span class="me1">password</span><span class="sy0">;</span><br />
+&nbsp; console.<span class="me1">log</span><span class="br0">&#40;</span><span class="st0">&quot;User name = &quot;</span><span class="sy0">+</span>user_name<span class="sy0">+</span><span class="st0">&quot;, password is &quot;</span><span class="sy0">+</span>password<span class="br0">&#41;</span><span class="sy0">;</span><br />
+&nbsp; res.<span class="me1">end</span><span class="br0">&#40;</span><span class="st0">&quot;yes&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span></div></div>
+<p>Here is complete Server code.</p>
+<div class="file_name"><strong>server.js</strong></div>
+<div class="codecolorer-container javascript twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="javascript codecolorer"><span class="kw1">var</span> express &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp; require<span class="br0">&#40;</span><span class="st0">&quot;express&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="kw1">var</span> bodyParser &nbsp; &nbsp; <span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp; require<span class="br0">&#40;</span><span class="st0">&quot;body-parser&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="kw1">var</span> app &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="sy0">=</span> &nbsp; &nbsp; &nbsp; &nbsp; express<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<br />
+app.<span class="me1">use</span><span class="br0">&#40;</span>bodyParser.<span class="me1">urlencoded</span><span class="br0">&#40;</span><span class="br0">&#123;</span> extended<span class="sy0">:</span> <span class="kw2">false</span> <span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+app.<span class="me1">use</span><span class="br0">&#40;</span>bodyParser.<span class="me1">json</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<br />
+app.<span class="kw1">get</span><span class="br0">&#40;</span><span class="st0">'/'</span><span class="sy0">,</span><span class="kw1">function</span><span class="br0">&#40;</span>req<span class="sy0">,</span>res<span class="br0">&#41;</span><span class="br0">&#123;</span><br />
+&nbsp; res.<span class="me1">sendfile</span><span class="br0">&#40;</span><span class="st0">&quot;index.html&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+app.<span class="me1">post</span><span class="br0">&#40;</span><span class="st0">'/login'</span><span class="sy0">,</span><span class="kw1">function</span><span class="br0">&#40;</span>req<span class="sy0">,</span>res<span class="br0">&#41;</span><span class="br0">&#123;</span><br />
+&nbsp; <span class="kw1">var</span> user_name<span class="sy0">=</span>req.<span class="me1">body</span>.<span class="me1">user</span><span class="sy0">;</span><br />
+&nbsp; <span class="kw1">var</span> password<span class="sy0">=</span>req.<span class="me1">body</span>.<span class="me1">password</span><span class="sy0">;</span><br />
+&nbsp; console.<span class="me1">log</span><span class="br0">&#40;</span><span class="st0">&quot;User name = &quot;</span><span class="sy0">+</span>user_name<span class="sy0">+</span><span class="st0">&quot;, password is &quot;</span><span class="sy0">+</span>password<span class="br0">&#41;</span><span class="sy0">;</span><br />
+&nbsp; res.<span class="me1">end</span><span class="br0">&#40;</span><span class="st0">&quot;yes&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+app.<span class="me1">listen</span><span class="br0">&#40;</span><span class="nu0">3000</span><span class="sy0">,</span><span class="kw1">function</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span><br />
+&nbsp; console.<span class="me1">log</span><span class="br0">&#40;</span><span class="st0">&quot;Started on PORT 3000&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span><br />
+<span class="br0">&#125;</span><span class="br0">&#41;</span></div></div>
+<p>On front-end we will create simple HTML file and call the POST request using Ajax. Here is a code of HTML page.</p>
+<div class="file_name"><strong>index.html</strong></div>
+<div class="codecolorer-container html4strict twitlight" style="overflow:auto;white-space:nowrap;width:99%;"><div class="html4strict codecolorer"><span class="sc2">&lt;<a href="http://december.com/html/4/element/html.html"><span class="kw2">html</span></a>&gt;</span><br />
+&nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/head.html"><span class="kw2">head</span></a>&gt;</span><br />
+&nbsp; &nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/title.html"><span class="kw2">title</span></a>&gt;</span>Simple login<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/title.html"><span class="kw2">title</span></a>&gt;</span><br />
+&nbsp; &nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/script.html"><span class="kw2">script</span></a> <span class="kw3">src</span><span class="sy0">=</span><span class="st0">&quot;//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;</span>&gt;</span> &nbsp;<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/script.html"><span class="kw2">script</span></a>&gt;</span><br />
+&nbsp; &nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/script.html"><span class="kw2">script</span></a>&gt;</span><br />
+&nbsp; &nbsp; &nbsp; $(document).ready(function(){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; var user,pass;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; $(&quot;#submit&quot;).click(function(){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; user=$(&quot;#user&quot;).val();<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pass=$(&quot;#password&quot;).val();<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $.post(&quot;http://localhost:3000/login&quot;,{user: user,password: pass}, function(data){<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(data==='done')<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert(&quot;login success&quot;);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; &nbsp; });<br />
+&nbsp; &nbsp; <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/script.html"><span class="kw2">script</span></a>&gt;</span><br />
+&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/head.html"><span class="kw2">head</span></a>&gt;</span><br />
+&nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/body.html"><span class="kw2">body</span></a>&gt;</span><br />
+&nbsp; &nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/h1.html"><span class="kw2">h1</span></a>&gt;</span>Hello people !<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/h1.html"><span class="kw2">h1</span></a>&gt;</span><br />
+&nbsp; &nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;TEXT&quot;</span> <span class="kw3">id</span><span class="sy0">=</span><span class="st0">&quot;user&quot;</span> <span class="kw3">size</span><span class="sy0">=</span><span class="st0">&quot;40&quot;</span>&gt;&lt;<a href="http://december.com/html/4/element/br.html"><span class="kw2">br</span></a>&gt;</span><br />
+&nbsp; &nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;password&quot;</span> <span class="kw3">id</span><span class="sy0">=</span><span class="st0">&quot;password&quot;</span> <span class="kw3">size</span><span class="sy0">=</span><span class="st0">&quot;40&quot;</span>&gt;&lt;<a href="http://december.com/html/4/element/br.html"><span class="kw2">br</span></a>&gt;</span><br />
+&nbsp; &nbsp; <span class="sc2">&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;button&quot;</span> <span class="kw3">id</span><span class="sy0">=</span><span class="st0">&quot;submit&quot;</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">&quot;Submit&quot;</span>&gt;</span><br />
+&nbsp; <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/body.html"><span class="kw2">body</span></a>&gt;</span><br />
+<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/html.html"><span class="kw2">html</span></a>&gt;</span></div></div>
+<p>Here is a video of developing app.<br />
+<iframe width="854" height="510" src="//www.youtube.com/embed/C3G3N4LMJeE" frameborder="0" allowfullscreen></iframe></p>
+<br><div style="padding: 40px; color: white; height: 200px; width: 100%; background-color: #dd4b39;">Enjoyed the article? Help us grow and produce more awesome content like this by going pro!<br><a href="/membership-account/membership-levels/" style="-webkit-appearance: button; -moz-appearance: button; appearance: button; text-decoration: none; color: initial; width: 100%; font-size: 15px; font-weight: bold; background-color: white; color: black;text-align: center; padding: 20px;">Become a pro!</a></div> </div>
+
+<div class="ss-social-wrap">
+<ul class="ul_reset ss_social_o">
+<li class="ssso_fb_like">
+<div class="fb-like" data-href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false">
+</div>
+</li>
+<li class="ssso_fb_save">
+<div class="fb-save" data-uri="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" data-size="small">
+</div>
+</li>
+<li class="ssso_fb_messenger">
+<div class="fb-send" data-href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" data-size="small">
+</div>
+</li>
+<li class="ssso_in_share">
+<script type="IN/Share" data-counter="right"></script>
+</li>
+<li class="ssso_gp_plusone">
+<div class="g-plusone" data-annotation="bubble" data-size="medium" data-href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/">
+</div>
+</li>
+</ul>
+<ul class="social-share">
+<li>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;" class="ss-facebook"><span>Share on Facebook</span></a>
+</li>
+<li>
+<a href="https://twitter.com/intent/tweet?source=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/&text=Handle GET and POST Request in Express 4" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;" class="ss-twitter"><span>Tweet This</span></a>
+</li>
+<li>
+<a href="https://plus.google.com/share?url=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;" class="ss-googleplus"><span>Share on Google+</span></a>
+</li>
+<li>
+<a href="http://pinterest.com/pin/create/button/?url=https://codeforgeek.com/2014/09/handle-get-post-request-express-4/&description=Handle GET and POST Request in Express 4" target="_blank" title="Pin it" onclick="window.open('http://pinterest.com/pin/create/button/?url=' + encodeURIComponent(document.URL) + '&description=' +  encodeURIComponent(document.title)); return false;" class="ss-pinterest"><span>Pin This</span></a>
+</li>
+</ul>
+</div>
+<footer class="entry-footer">
+</footer>
+</article>
+
+<div class="author-box"><div class="ab-photo"><img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=90&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=180&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-90 photo' height='90' width='90' /></div><div class="ab-content"> <h3 class="ab-name"><a href="https://codeforgeek.com" title="Visit Shahid (UnixRoot) Shaikh&#8217;s website" rel="author external">Shahid (UnixRoot) Shaikh</a></h3> <p class="ab-desc">Hey there,
+This is Shahid, an Engineer and Blogger from Bombay. I am also an Author and i wrote a programming book on Sails.js, MVC framework for Node.js. </p> <ul class="ab-social"><li><a class="ab-website" target="_blank" href="https://codeforgeek.com">Website</a></li><li><a class="ab-facebook" target="_blank" href="https://www.facebook.com/s2v92"></a></li><li><a class="ab-twitter" target="_blank" href="https://twitter.com/codeforgeek"></a></li><li><a class="ab-googleplus" target="_blank" href="https://plus.google.com/u/0/+ShaikhShahid" rel="author"></a></li><li><a class="ab-youtube" target="_blank" href="https://www.youtube.com/channel/UCqQZH0XpOdPC5ZOBWKePcWg" rel="author"></a></li><li><a class="ab-instagram" target="_blank" href="https://www.instagram.com/shahid_sk/" rel="author"></a></li> </ul></div></div>
+<nav class="navigation post-navigation" role="navigation">
+<h2 class="screen-reader-text">Post navigation</h2>
+<div class="nav-links"><div class="nav-previous"><a href="https://codeforgeek.com/2014/09/ajax-search-box-php-mysql/" rel="prev">Ajax Search Box in PHP and MySQL</a></div><div class="nav-next"><a href="https://codeforgeek.com/2014/09/top-10-programming-languages/" rel="next">Top 10 Programming Languages to Learn</a></div></div>
+</nav>
+
+<div class="post-row related-posts">
+<div class="pr-header">
+<h3 class="pr-title">Related Posts</h3>
+</div>
+<div class="pr-post-list rp-list clear">
+<article class="pr-post">
+<a href="https://codeforgeek.com/2018/06/how-to-setup-nginx-with-node-js-to-serve-static-files/">
+<div class="pr-thumb">
+</div>
+<h3 class="pr-article">
+How to Setup Nginx with Node.js to Serve Static Files </h3>
+</a>
+</article>
+<article class="pr-post">
+<a href="https://codeforgeek.com/2018/03/nodejs-buffer-example/">
+<div class="pr-thumb">
+<img width="400" height="220" src="https://i2.wp.com/codeforgeek.com/wp-content/uploads/2018/03/nodejs-buffer-banner.png?resize=400%2C220&amp;ssl=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="nodejs buffer" /> </div>
+<h3 class="pr-article">
+Nodejs Buffer Example &#8211; Frequently Used Methods </h3>
+</a>
+</article>
+<article class="pr-post">
+<a href="https://codeforgeek.com/2018/03/refresh-token-jwt-nodejs-authentication/">
+<div class="pr-thumb">
+<img width="400" height="225" src="https://i2.wp.com/codeforgeek.com/wp-content/uploads/2018/03/computer-767784_1920.jpg?resize=400%2C225&amp;ssl=1" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Nodejs authentication using Refresh toke" /> </div>
+<h3 class="pr-article">
+Nodejs Authentication Using JWT and Refresh Token </h3>
+</a>
+</article>
+</div>
+</div>
+<div id="comments" class="comments-area">
+<h2 class="comments-title">
+49 Comments </h2>
+<ol class="comment-list">
+<li id="comment-449" class="comment even thread-even depth-1 parent">
+<article id="div-comment-449" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/72738d4b511252ea949ef71a78c2eec3?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/72738d4b511252ea949ef71a78c2eec3?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">derty</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-449">
+<time datetime="2014-09-16T11:45:12+00:00">
+Sep 16, 2014 at 11:45 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>That&#8217;s not a logging system.<br />
+No with session created, csrf token security, &#8230;</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-449' onclick='return addComment.moveForm( "div-comment-449", "449", "respond", "433" )' aria-label='Reply to derty'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-450" class="comment byuser comment-author-shahid bypostauthor odd alt depth-2">
+<article id="div-comment-450" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-450">
+<time datetime="2014-09-16T11:47:05+00:00">
+Sep 16, 2014 at 11:47 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Hi,<br />
+This log-in system was just to demonstrate how to read POST data. I have explained Session too. Please <a href="http://codeforgeek.com/2014/09/manage-session-using-node-js-express-4/" title="Manage session using Node.js and Express 4" rel="nofollow">see</a> here.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-450' onclick='return addComment.moveForm( "div-comment-450", "450", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+<li id="comment-481" class="comment even depth-2">
+<article id="div-comment-481" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/45f3b1d11b5ba83416a26f465cf43d6f?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/45f3b1d11b5ba83416a26f465cf43d6f?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://stackoverflow.com/questions/33363617/in-mean-im-not-able-to-diplay-list-from-database-mongodb-into-angularjs' rel='external nofollow' class='url'>swati</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-481">
+<time datetime="2015-10-27T15:58:46+00:00">
+Oct 27, 2015 at 3:58 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>plz try to solve this &#8230;<a href="http://stackoverflow.com/questions/33363617/in-mean-im-not-able-to-diplay-list-from-database-mongodb-into-angularjs" rel="nofollow">http://stackoverflow.com/questions/33363617/in-mean-im-not-able-to-diplay-list-from-database-mongodb-into-angularjs</a></p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-481' onclick='return addComment.moveForm( "div-comment-481", "481", "respond", "433" )' aria-label='Reply to swati'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-451" class="comment odd alt thread-odd thread-alt depth-1">
+<article id="div-comment-451" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/ab80483c71ee82f31dd180db85e80b6e?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/ab80483c71ee82f31dd180db85e80b6e?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Dongbin</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-451">
+<time datetime="2015-02-04T10:42:24+00:00">
+Feb 4, 2015 at 10:42 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Thank you for nice, dedicated post!</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-451' onclick='return addComment.moveForm( "div-comment-451", "451", "respond", "433" )' aria-label='Reply to Dongbin'>Reply</a></div> </article>
+</li>
+<li id="comment-452" class="comment even thread-even depth-1 parent">
+<article id="div-comment-452" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/3d743879429a255df75a2fb47e0550cb?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/3d743879429a255df75a2fb47e0550cb?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">rj</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-452">
+<time datetime="2015-02-17T07:43:05+00:00">
+Feb 17, 2015 at 7:43 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>what editor did you use there in the video?</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-452' onclick='return addComment.moveForm( "div-comment-452", "452", "respond", "433" )' aria-label='Reply to rj'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-453" class="comment byuser comment-author-shahid bypostauthor odd alt depth-2">
+<article id="div-comment-453" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-453">
+<time datetime="2015-02-22T11:09:38+00:00">
+Feb 22, 2015 at 11:09 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Its Atom.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-453' onclick='return addComment.moveForm( "div-comment-453", "453", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-454" class="comment even thread-odd thread-alt depth-1">
+<article id="div-comment-454" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/b02b6e635f4ea803696a94b5eb4310fb?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/b02b6e635f4ea803696a94b5eb4310fb?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Rana Arsal</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-454">
+<time datetime="2015-02-23T22:36:30+00:00">
+Feb 23, 2015 at 10:36 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Thanks for this great information.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-454' onclick='return addComment.moveForm( "div-comment-454", "454", "respond", "433" )' aria-label='Reply to Rana Arsal'>Reply</a></div> </article>
+</li>
+<li id="comment-455" class="comment odd alt thread-even depth-1">
+<article id="div-comment-455" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/355b8ea949ce3de538cbc9b03117bd48?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/355b8ea949ce3de538cbc9b03117bd48?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Vaishnav Naik</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-455">
+<time datetime="2015-03-19T19:12:29+00:00">
+Mar 19, 2015 at 7:12 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>It is very helpful. Thanks</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-455' onclick='return addComment.moveForm( "div-comment-455", "455", "respond", "433" )' aria-label='Reply to Vaishnav Naik'>Reply</a></div> </article>
+</li>
+<li id="comment-456" class="comment even thread-odd thread-alt depth-1 parent">
+<article id="div-comment-456" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/ce8cd647a5ca9bba82f4cc77c38c469a?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/ce8cd647a5ca9bba82f4cc77c38c469a?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">chi</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-456">
+<time datetime="2015-03-26T21:11:04+00:00">
+Mar 26, 2015 at 9:11 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>I got one question for you, do we need to hide our endpoint here to prevent anyone can send request to your server(/login) without going thru your client page? If so, what strategy should we use?</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-456' onclick='return addComment.moveForm( "div-comment-456", "456", "respond", "433" )' aria-label='Reply to chi'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-457" class="comment byuser comment-author-shahid bypostauthor odd alt depth-2">
+<article id="div-comment-457" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-457">
+<time datetime="2015-03-27T10:36:31+00:00">
+Mar 27, 2015 at 10:36 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>We can prevent IP to send request to our Server. If IP is from other than allowed network then it won&#8217;t accept the request. Please look over access-control and allow-origin headers parameters of HTTP.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-457' onclick='return addComment.moveForm( "div-comment-457", "457", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-458" class="comment even thread-even depth-1 parent">
+<article id="div-comment-458" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/ac2a1dd4f7b37d95f0bc55c1ad0fa348?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/ac2a1dd4f7b37d95f0bc55c1ad0fa348?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">rao</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-458">
+<time datetime="2015-04-05T00:14:53+00:00">
+Apr 5, 2015 at 12:14 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Once again a resourceful post. Thanks! </p>
+<p>However, I have a doubt. Will that alert get fired? Because, you are sending &#8216;yes&#8217; as response and checking for &#8216;done&#8217; in the html.</p>
+<p>When I tried with specific &#8216;success&#8217; function and compare with &#8216;yes&#8217;, it worked.</p>
+<p>Please correct me if I am wrong.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-458' onclick='return addComment.moveForm( "div-comment-458", "458", "respond", "433" )' aria-label='Reply to rao'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-462" class="comment odd alt depth-2">
+<article id="div-comment-462" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">KimCrab</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-462">
+<time datetime="2015-04-28T07:22:32+00:00">
+Apr 28, 2015 at 7:22 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>U are right</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-462' onclick='return addComment.moveForm( "div-comment-462", "462", "respond", "433" )' aria-label='Reply to KimCrab'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-459" class="comment even thread-odd thread-alt depth-1 parent">
+<article id="div-comment-459" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">KimCrab</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-459">
+<time datetime="2015-04-28T07:06:13+00:00">
+Apr 28, 2015 at 7:06 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Amazing post for using post.<br />
+Thanks dude!</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-459' onclick='return addComment.moveForm( "div-comment-459", "459", "respond", "433" )' aria-label='Reply to KimCrab'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-460" class="comment odd alt depth-2">
+<article id="div-comment-460" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">KimCrab</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-460">
+<time datetime="2015-04-28T07:16:57+00:00">
+Apr 28, 2015 at 7:16 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>But there is a mistake.<br />
+yes -&gt; done<br />
+to fire alert();</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-460' onclick='return addComment.moveForm( "div-comment-460", "460", "respond", "433" )' aria-label='Reply to KimCrab'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-461" class="comment even thread-even depth-1">
+<article id="div-comment-461" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/5e97f5b7d2c68ebf01bee0bb53742706?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">KimCrab</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-461">
+<time datetime="2015-04-28T07:18:15+00:00">
+Apr 28, 2015 at 7:18 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>little mistake<br />
+yse&#8211;&gt;done</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-461' onclick='return addComment.moveForm( "div-comment-461", "461", "respond", "433" )' aria-label='Reply to KimCrab'>Reply</a></div> </article>
+</li>
+<li id="comment-463" class="comment odd alt thread-odd thread-alt depth-1">
+<article id="div-comment-463" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/b041ac15f5542ee51df2f1a8241cb0c4?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/b041ac15f5542ee51df2f1a8241cb0c4?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">ARJUN</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-463">
+<time datetime="2015-05-07T16:50:27+00:00">
+May 7, 2015 at 4:50 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>great post!!</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-463' onclick='return addComment.moveForm( "div-comment-463", "463", "respond", "433" )' aria-label='Reply to ARJUN'>Reply</a></div> </article>
+</li>
+<li id="comment-464" class="comment even thread-even depth-1">
+<article id="div-comment-464" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/b26445eff95f072f5d17faf34bf1d019?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/b26445eff95f072f5d17faf34bf1d019?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Simon</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-464">
+<time datetime="2015-05-10T20:46:40+00:00">
+May 10, 2015 at 8:46 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Thanks men !!! 😀</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-464' onclick='return addComment.moveForm( "div-comment-464", "464", "respond", "433" )' aria-label='Reply to Simon'>Reply</a></div> </article>
+</li>
+<li id="comment-465" class="comment odd alt thread-odd thread-alt depth-1 parent">
+<article id="div-comment-465" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/b88db941c3aef8cd01b969c03b297af6?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/b88db941c3aef8cd01b969c03b297af6?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">david</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-465">
+<time datetime="2015-06-05T09:46:21+00:00">
+Jun 5, 2015 at 9:46 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>You don&#8217;t really need sudo on that npm</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-465' onclick='return addComment.moveForm( "div-comment-465", "465", "respond", "433" )' aria-label='Reply to david'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-466" class="comment byuser comment-author-shahid bypostauthor even depth-2">
+<article id="div-comment-466" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-466">
+<time datetime="2015-06-05T17:50:59+00:00">
+Jun 5, 2015 at 5:50 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Actually in my Ubuntu system i do need that.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-466' onclick='return addComment.moveForm( "div-comment-466", "466", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-467" class="comment odd alt thread-even depth-1 parent">
+<article id="div-comment-467" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/70b6c7a3ce7f8248408fef7cc46164e9?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/70b6c7a3ce7f8248408fef7cc46164e9?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">roger</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-467">
+<time datetime="2015-06-17T10:20:40+00:00">
+Jun 17, 2015 at 10:20 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>I cannot get this example to work. The req.body is returning undefined. Any ideas to help me please?</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-467' onclick='return addComment.moveForm( "div-comment-467", "467", "respond", "433" )' aria-label='Reply to roger'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-468" class="comment byuser comment-author-shahid bypostauthor even depth-2">
+<article id="div-comment-468" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-468">
+<time datetime="2015-06-17T11:31:22+00:00">
+Jun 17, 2015 at 11:31 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>I&#8217;l love to help. </p>
+<p>Are you using same code or you have done some modification ?</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-468' onclick='return addComment.moveForm( "div-comment-468", "468", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+<li id="comment-1769" class="comment odd alt depth-2">
+<article id="div-comment-1769" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/27652e7cb7c877fd9ce13cfce20a8dea?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/27652e7cb7c877fd9ce13cfce20a8dea?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Bilal</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-1769">
+<time datetime="2015-12-14T04:20:46+00:00">
+Dec 14, 2015 at 4:20 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>add this line: app.use(bodyParser.json());</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-1769' onclick='return addComment.moveForm( "div-comment-1769", "1769", "respond", "433" )' aria-label='Reply to Bilal'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-469" class="comment even thread-odd thread-alt depth-1 parent">
+<article id="div-comment-469" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c2fcf8bcc5ec17d35bd2e49c4d31402f?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c2fcf8bcc5ec17d35bd2e49c4d31402f?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">scott</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-469">
+<time datetime="2015-06-18T21:07:53+00:00">
+Jun 18, 2015 at 9:07 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Was that video suppose to be helpful ? It went way too fast</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-469' onclick='return addComment.moveForm( "div-comment-469", "469", "respond", "433" )' aria-label='Reply to scott'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-472" class="comment byuser comment-author-shahid bypostauthor odd alt depth-2">
+<article id="div-comment-472" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-472">
+<time datetime="2015-06-19T11:45:17+00:00">
+Jun 19, 2015 at 11:45 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>It was supposed to be demo of the code not tutorial video.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-472' onclick='return addComment.moveForm( "div-comment-472", "472", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-470" class="comment even thread-even depth-1 parent">
+<article id="div-comment-470" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c2fcf8bcc5ec17d35bd2e49c4d31402f?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c2fcf8bcc5ec17d35bd2e49c4d31402f?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">scott</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-470">
+<time datetime="2015-06-18T21:47:40+00:00">
+Jun 18, 2015 at 9:47 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>you require(Body-parser) yet you do not put it in your dependencies or tell anyone to install</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-470' onclick='return addComment.moveForm( "div-comment-470", "470", "respond", "433" )' aria-label='Reply to scott'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-471" class="comment byuser comment-author-shahid bypostauthor odd alt depth-2">
+<article id="div-comment-471" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-471">
+<time datetime="2015-06-19T11:44:58+00:00">
+Jun 19, 2015 at 11:44 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>i did put that in dependencies !</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-471' onclick='return addComment.moveForm( "div-comment-471", "471", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-473" class="comment even thread-odd thread-alt depth-1 parent">
+<article id="div-comment-473" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/bd9c234ec550f23cdd1aae1a1c6f0f4f?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/bd9c234ec550f23cdd1aae1a1c6f0f4f?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">John</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-473">
+<time datetime="2015-06-22T20:10:48+00:00">
+Jun 22, 2015 at 8:10 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>I cannot get this example to work from another computer.<br />
+If I run the server.js on machine 1 (which as an IP of say 10.45.32.102) and go to localhost:3000 everything works as expect.</p>
+<p>However when I try to access this page from another computer (on the same network) by doing 10.45.32.102:3000 the Simple Login page shows up but when I hit the submit button It will not POST to the server. I don&#8217;t think the jquery is working in this particular instance could you help? The example is nice. But I want people from the network to be able to access the page.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-473' onclick='return addComment.moveForm( "div-comment-473", "473", "respond", "433" )' aria-label='Reply to John'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-474" class="comment byuser comment-author-shahid bypostauthor odd alt depth-2">
+<article id="div-comment-474" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-474">
+<time datetime="2015-06-24T15:00:26+00:00">
+Jun 24, 2015 at 3:00 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Hi John,</p>
+<p>I need to reproduce same scenario and come up with solution. </p>
+<p>Stay tuned.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-474' onclick='return addComment.moveForm( "div-comment-474", "474", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-475" class="comment even thread-even depth-1">
+<article id="div-comment-475" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/2b06494e0226ef6a39596b6aae046cca?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/2b06494e0226ef6a39596b6aae046cca?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">triyambaka</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-475">
+<time datetime="2015-06-24T17:29:50+00:00">
+Jun 24, 2015 at 5:29 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>i open a connection using java httpurl connection and write data in output stream but<br />
+am not able to read input stream using node express. iam able to read using http module not in express<br />
+how to read request input stream using express4</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-475' onclick='return addComment.moveForm( "div-comment-475", "475", "respond", "433" )' aria-label='Reply to triyambaka'>Reply</a></div> </article>
+</li>
+<li id="comment-476" class="comment odd alt thread-odd thread-alt depth-1 parent">
+<article id="div-comment-476" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/28471b7c50e58361ee7b84fcf570cab8?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/28471b7c50e58361ee7b84fcf570cab8?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">James</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-476">
+<time datetime="2015-07-09T00:55:18+00:00">
+Jul 9, 2015 at 12:55 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>If i had an array of items on my server that i wanted to search from the front end and have it return valid results how would i use post and get (or either) to do this? If search took a long time how would i tackle this?</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-476' onclick='return addComment.moveForm( "div-comment-476", "476", "respond", "433" )' aria-label='Reply to James'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-477" class="comment byuser comment-author-shahid bypostauthor even depth-2">
+<article id="div-comment-477" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-477">
+<time datetime="2015-07-10T10:25:07+00:00">
+Jul 10, 2015 at 10:25 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>You need to use POST cause you have to pass some data to SERVER. Pass the data, use indexOf() to search in array and if found return the value.</p>
+<p>How to tackle if its slow ? If you get so much large data then you need to implement some search Algorithm like Binary search etc to improve the speed also update the SERVER configuration.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-477' onclick='return addComment.moveForm( "div-comment-477", "477", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-478" class="comment odd alt thread-even depth-1">
+<article id="div-comment-478" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/ed8bf25423d6187eefd51ff76a09fa8f?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/ed8bf25423d6187eefd51ff76a09fa8f?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Davide Barranca</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-478">
+<time datetime="2015-07-24T19:07:54+00:00">
+Jul 24, 2015 at 7:07 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Thanks for sharing!</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-478' onclick='return addComment.moveForm( "div-comment-478", "478", "respond", "433" )' aria-label='Reply to Davide Barranca'>Reply</a></div> </article>
+</li>
+<li id="comment-479" class="comment even thread-odd thread-alt depth-1">
+<article id="div-comment-479" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/eff96c75e96b269222f205b9e87c31a0?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/eff96c75e96b269222f205b9e87c31a0?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">vikram</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-479">
+<time datetime="2015-09-10T12:17:19+00:00">
+Sep 10, 2015 at 12:17 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Other than body-parser module, are there any other modules for parsing the POST,PUT requests?</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-479' onclick='return addComment.moveForm( "div-comment-479", "479", "respond", "433" )' aria-label='Reply to vikram'>Reply</a></div> </article>
+</li>
+<li id="comment-480" class="comment odd alt thread-even depth-1">
+<article id="div-comment-480" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/efa075be8edfca27718126a441ef8e91?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/efa075be8edfca27718126a441ef8e91?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Veeresh</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-480">
+<time datetime="2015-10-10T14:59:47+00:00">
+Oct 10, 2015 at 2:59 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Hi author, I want the same thing but the slight change in that, In file I have only one POST API which server the response. The requesting is coming from another server.<br />
+Input is Json like :<br />
+{<br />
+name: &#8216;Veeresh&#8217;,<br />
+age:100<br />
+}<br />
+Output:<br />
+Just print input in browser.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-480' onclick='return addComment.moveForm( "div-comment-480", "480", "respond", "433" )' aria-label='Reply to Veeresh'>Reply</a></div> </article>
+</li>
+<li id="comment-482" class="comment even thread-odd thread-alt depth-1 parent">
+<article id="div-comment-482" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/372dd08f27de2dc5673779ff4e18ee8e?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/372dd08f27de2dc5673779ff4e18ee8e?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">blah</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-482">
+<time datetime="2015-11-17T02:06:07+00:00">
+Nov 17, 2015 at 2:06 am </time>
+</a>
+</div>
+ </footer>
+<div class="comment-content">
+<p>Hello I am so delighted I found your site, I really found you by<br />
+accident, while I was searching on Yahoo for something else, Anyhow<br />
+I am here now and would just like to say thanks a lot<br />
+for a fantastic post and a all round enjoyable blog (I also love the theme/design), I don&#8217;t have time to go through it all at the moment but I have saved it and also added<br />
+in your RSS feeds, so when I have time I will be back to read more, Please do keep<br />
+up the superb work.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-482' onclick='return addComment.moveForm( "div-comment-482", "482", "respond", "433" )' aria-label='Reply to blah'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-483" class="comment byuser comment-author-shahid bypostauthor odd alt depth-2">
+<article id="div-comment-483" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn"><a href='http://www.codeforgeek.com' rel='external nofollow' class='url'>Shahid Shaikh</a></b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-483">
+<time datetime="2015-11-17T12:20:47+00:00">
+Nov 17, 2015 at 12:20 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Thank you so much for appreciation.</p>
+<p>Will keep it up (y)</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-483' onclick='return addComment.moveForm( "div-comment-483", "483", "respond", "433" )' aria-label='Reply to Shahid Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-2251" class="comment even thread-even depth-1">
+<article id="div-comment-2251" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/142dec5ec2663f54ea385304df6620c9?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/142dec5ec2663f54ea385304df6620c9?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Bilal Korir</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-2251">
+<time datetime="2015-12-23T23:15:52+00:00">
+Dec 23, 2015 at 11:15 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Thank you for the tutorial, short but enough to get started.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-2251' onclick='return addComment.moveForm( "div-comment-2251", "2251", "respond", "433" )' aria-label='Reply to Bilal Korir'>Reply</a></div> </article>
+</li>
+<li id="comment-2428" class="comment odd alt thread-odd thread-alt depth-1 parent">
+<article id="div-comment-2428" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/00af6e085efbc34b55b184c779601fe2?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/00af6e085efbc34b55b184c779601fe2?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Brian</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-2428">
+<time datetime="2015-12-27T01:04:24+00:00">
+Dec 27, 2015 at 1:04 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Please look at this and advice me asap please I need it 4 my project .<br />
+Here&#8217;s how my login system works. I am using was as engine with /views as folder for views. I will skip lots of details<br />
+var router =express.Router();<br />
+&#8230;..<br />
+router.get(&#8216;/&#8217;,fxn(req,res){<br />
+res.render(&#8216;index&#8217;); //working<br />
+}<br />
+router. post(&#8216;/login&#8217;, function(req,res){<br />
+console.log(&#8216;test login&#8217;); //working<br />
+res.render(&#8216;users/index&#8217;,{ some json data here }); // not working<br />
+}</p>
+<p>Everything is well set so no working except the part for rendering a view after a post request. Maybe an example will help using express.Router()</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-2428' onclick='return addComment.moveForm( "div-comment-2428", "2428", "respond", "433" )' aria-label='Reply to Brian'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-5565" class="comment even depth-2">
+<article id="div-comment-5565" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/6894bca3134f0a8c2773d3f430833c75?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/6894bca3134f0a8c2773d3f430833c75?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Sarang</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-5565">
+<time datetime="2016-01-21T22:34:24+00:00">
+Jan 21, 2016 at 10:34 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Hi Brian,<br />
+Its seems to be a routing issue. Please verify the route you provided for the post method is correct.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-5565' onclick='return addComment.moveForm( "div-comment-5565", "5565", "respond", "433" )' aria-label='Reply to Sarang'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-8505" class="comment odd alt thread-even depth-1">
+<article id="div-comment-8505" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/266fd8871afe09a66752b50ba0873c50?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/266fd8871afe09a66752b50ba0873c50?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Dert</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-8505">
+<time datetime="2016-02-16T20:34:32+00:00">
+Feb 16, 2016 at 8:34 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Great simple example, thanks! Saved my day, wasn&#8217;t able to get those req params, thought that &#8220;body&#8221; usage dedicated to the html elements only&#8230;</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-8505' onclick='return addComment.moveForm( "div-comment-8505", "8505", "respond", "433" )' aria-label='Reply to Dert'>Reply</a></div> </article>
+</li>
+<li id="comment-10741" class="comment even thread-odd thread-alt depth-1">
+<article id="div-comment-10741" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/4428f2fe0e288108df9259cf01d7b7ff?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/4428f2fe0e288108df9259cf01d7b7ff?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">LANA</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-10741">
+<time datetime="2016-03-08T18:44:42+00:00">
+Mar 8, 2016 at 6:44 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>very usefull</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-10741' onclick='return addComment.moveForm( "div-comment-10741", "10741", "respond", "433" )' aria-label='Reply to LANA'>Reply</a></div> </article>
+</li>
+<li id="comment-21033" class="comment odd alt thread-even depth-1 parent">
+<article id="div-comment-21033" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/50c2ed0e6ee390a20b080d8838ef2ca5?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/50c2ed0e6ee390a20b080d8838ef2ca5?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Ketav Chotaliua</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-21033">
+<time datetime="2016-06-21T10:25:03+00:00">
+Jun 21, 2016 at 10:25 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Getting Error : &#8220;ReferenceError: setImmediate is not defined&#8221;</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-21033' onclick='return addComment.moveForm( "div-comment-21033", "21033", "respond", "433" )' aria-label='Reply to Ketav Chotaliua'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-21038" class="comment byuser comment-author-shahid bypostauthor even depth-2">
+<article id="div-comment-21038" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Shahid (UnixRoot) Shaikh</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-21038">
+<time datetime="2016-06-21T12:14:54+00:00">
+Jun 21, 2016 at 12:14 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Where did I use setImmediate ?</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-21038' onclick='return addComment.moveForm( "div-comment-21038", "21038", "respond", "433" )' aria-label='Reply to Shahid (UnixRoot) Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-35638" class="comment odd alt thread-odd thread-alt depth-1">
+<article id="div-comment-35638" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/0a46279cef4bff87d734164649077e48?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/0a46279cef4bff87d734164649077e48?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">ravi</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-35638">
+<time datetime="2016-12-24T17:08:57+00:00">
+Dec 24, 2016 at 5:08 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>i want the code to store to form data into mongo database</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-35638' onclick='return addComment.moveForm( "div-comment-35638", "35638", "respond", "433" )' aria-label='Reply to ravi'>Reply</a></div> </article>
+</li>
+<li id="comment-37868" class="comment even thread-even depth-1">
+<article id="div-comment-37868" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/349d42f957e432f455553bf31b50b3dd?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/349d42f957e432f455553bf31b50b3dd?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Brian Quinn</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-37868">
+<time datetime="2017-01-21T00:06:40+00:00">
+Jan 21, 2017 at 12:06 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>can you see any reason why this Angular2 observable call would cause the same Express POST to crash?</p>
+<p> public AddProject (body : string): Observable {<br />
+let bodyString = JSON.stringify(body); // Stringify payload<br />
+let headers<br />
+= new Headers({ &#8216;Content-Type&#8217;: &#8216;application/json&#8217;,<br />
+&#8216;Accept&#8217;: &#8216;q=0.8;application/json;q=0.9&#8217; }); // &#8230; Set content type to JSON<br />
+let options = new RequestOptions({ headers: this.headers });<br />
+return this.http.post(this.actionUrlnewProject, bodyString, options)<br />
+.map(response =&gt; response.json())<br />
+.catch(this.handleError);<br />
+}</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-37868' onclick='return addComment.moveForm( "div-comment-37868", "37868", "respond", "433" )' aria-label='Reply to Brian Quinn'>Reply</a></div> </article>
+</li>
+<li id="comment-37873" class="comment odd alt thread-odd thread-alt depth-1 parent">
+<article id="div-comment-37873" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/349d42f957e432f455553bf31b50b3dd?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/349d42f957e432f455553bf31b50b3dd?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Brian Quinn</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-37873">
+<time datetime="2017-01-21T00:19:01+00:00">
+Jan 21, 2017 at 12:19 am </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Here is the Express code&#8230;.</p>
+<p> // Insert a new resume project<br />
+app.post(&#8220;/api/resume/newProject&#8221;, function(req, res) {<br />
+//for new projects we will calculate the uid<br />
+var uid = &#8220;2&#8221;; //req.param(&#8216;uid&#8217;);<br />
+var name = req.body.name;<br />
+console.log(&#8220;req.body.name:&#8221;, req.body.name);<br />
+var year = req.body.year;<br />
+var note = req.body.note;<br />
+var type = req.body.type;<br />
+db.collection(&#8220;wr_project&#8221;).insert(<br />
+{<br />
+&#8220;uid&#8221;:uid,<br />
+&#8220;name&#8221;:name,<br />
+&#8220;year&#8221;:year,<br />
+&#8220;note&#8221;:note,<br />
+&#8220;type&#8221;:type<br />
+},<br />
+function(err, result) {<br />
+if(err) {<br />
+res.json(err);<br />
+res.end(&#8220;yes&#8221;);<br />
+};<br />
+res.json(result);<br />
+res.end(&#8220;yes&#8221;);<br />
+});<br />
+});</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-37873' onclick='return addComment.moveForm( "div-comment-37873", "37873", "respond", "433" )' aria-label='Reply to Brian Quinn'>Reply</a></div> </article>
+<ol class="children">
+<li id="comment-38081" class="comment byuser comment-author-shahid bypostauthor even depth-2">
+<article id="div-comment-38081" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c178ed2e3974874e691d8041c6480781?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Shahid (UnixRoot) Shaikh</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-38081">
+<time datetime="2017-01-23T18:50:30+00:00">
+Jan 23, 2017 at 6:50 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Can you paste the error trace? If it is &#8220;Headers already sent&#8221; then try to remove the res.end() from error and success block and put return in error block.</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-38081' onclick='return addComment.moveForm( "div-comment-38081", "38081", "respond", "433" )' aria-label='Reply to Shahid (UnixRoot) Shaikh'>Reply</a></div> </article>
+</li>
+</ol>
+</li>
+<li id="comment-43630" class="comment odd alt thread-even depth-1">
+<article id="div-comment-43630" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/c7046647d72bf075317fff9fd7f2c9f9?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/c7046647d72bf075317fff9fd7f2c9f9?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">Rune Jeppesen</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-43630">
+<time datetime="2017-06-09T19:35:33+00:00">
+Jun 9, 2017 at 7:35 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>Thanks a lot &#8211; very good.<br />
+For those finding this article now and dont want to use jQuery this will do the same (in &#8216;newer browsers):<br />
+fetch(&#8220;http://localhost:3000/login&#8221;,<br />
+{<br />
+method: &#8220;POST&#8221;,<br />
+body: { user: &#8220;user&#8221;, password: &#8220;pass&#8221; }<br />
+});</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-43630' onclick='return addComment.moveForm( "div-comment-43630", "43630", "respond", "433" )' aria-label='Reply to Rune Jeppesen'>Reply</a></div> </article>
+</li>
+<li id="comment-44666" class="comment even thread-odd thread-alt depth-1">
+<article id="div-comment-44666" class="comment-body">
+<footer class="comment-meta">
+<div class="comment-author vcard">
+<img alt='' src='https://secure.gravatar.com/avatar/b98d3d640b7ccbd9d6349a7a7e81be47?s=150&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g' srcset='https://secure.gravatar.com/avatar/b98d3d640b7ccbd9d6349a7a7e81be47?s=300&#038;d=https%3A%2F%2Fcodeforgeek.com%2Fwp-content%2Fthemes%2Fcodeforgeek%2Fimg%2Fauthor-placeholder.png&#038;r=g 2x' class='avatar avatar-150 photo' height='150' width='150' /> <b class="fn">ravi</b> <span class="says">says:</span> </div>
+<div class="comment-metadata">
+<a href="https://codeforgeek.com/2014/09/handle-get-post-request-express-4/#comment-44666">
+<time datetime="2017-07-14T17:33:49+00:00">
+Jul 14, 2017 at 5:33 pm </time>
+</a>
+</div>
+</footer>
+<div class="comment-content">
+<p>hey can u plz help me with hapi.js for making api ..am new with it</p>
+</div>
+<div class="reply"><a rel='nofollow' class='comment-reply-link' href='#comment-44666' onclick='return addComment.moveForm( "div-comment-44666", "44666", "respond", "433" )' aria-label='Reply to ravi'>Reply</a></div> </article>
+</li>
+</ol>
+<div id="respond" class="comment-respond">
+<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2014/09/handle-get-post-request-express-4/#respond" style="display:none;">Cancel reply</a></small></h3> <form action="https://codeforgeek.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required='required' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" required='required' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" /></p>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /><label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='433' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="80fe27cf06" /></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="57" /></p> </form>
+</div>
+<p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank">Learn how your comment data is processed</a>.</p>
+</div>
+</main>
+</div>
+<aside id="secondary" class="widget-area" role="complementary">
+<div class="stick-sidebar">
+<section id="facebook-likebox-2" class="widget widget_facebook_likebox"><h2 class="widget-title"><a href="https://www.facebook.com/officialshahidsk/">Brought to you by&#8230;</a></h2> <div id="fb-root"></div>
+<div class="fb-page" data-href="https://www.facebook.com/officialshahidsk/" data-width="340" data-height="130" data-hide-cover="false" data-show-facepile="false" data-show-posts="false">
+<div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/officialshahidsk/"><a href="https://www.facebook.com/officialshahidsk/">Brought to you by&#8230;</a></blockquote></div>
+</div>
+</section><section id="text-8" class="widget widget_text"> <div class="textwidget"><div class="subscribe-wrap">
+<div id="mlb2-2882117" class="ml-subscribe-form ml-subscribe-form-2882117">
+<div class="ssw-content">
+<form class="ml-block-form" action="//app.mailerlite.com/webforms/submit/b0l3s2" data-id="158979" data-code="b0l3s2" method="POST" target="_blank">
+<p>NodeJS Best Practices</p>
+<ul class="ssw-fields clear">
+<li class="ssw-50 ml-field-name ml-validate-required">
+<input type="text" name="fields[name]" class="form-control ssw-name" placeholder="Your Name *" value="">
+</li>
+<li class="ssw-50 ml-field-email ml-validate-required ml-validate-email">
+<input type="text" name="fields[email]" class="form-control ssw-email" value="" placeholder="Your Email *">
+</li>
+<li>
+<button type="submit" class="ssw-submit button primary">Get The Free eBook</button>
+<button type="button" class="ssw-submit button loading"><img src="https://i0.wp.com/static.mailerlite.com/images/rolling.gif?resize=20%2C20&#038;ssl=1" width="20" height="20" style="width: 20px; height: 20px; margin-top:10px;" data-recalc-dims="1"></button>
+</li>
+</ul>
+<input type="hidden" name="ml-submit" value="1">
+</form>
+<div class="ssw-success ml-block-success">
+<p>Thank You!</p>
+<span>You've Successfully Subscribed To Our Newsletter.</span>
+</div>
+</div>
+</div>
+</div></div>
+</section><section id="text-19" class="widget widget_text"> <div class="textwidget">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="eb3def1fc5234d3e0e179421-"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-1093991142748141" data-ad-slot="9188099323"></ins>
+<script type="eb3def1fc5234d3e0e179421-">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</section><section id="text-7" class="widget widget_text"> <div class="textwidget"><style>
+#authorInfo {
+    width : 100%;
+    height : 176px;
+    border : 1px solid grey;
+    background-color : #444444;
+    padding : 27px;
+}
+
+#authorInfo img {
+    border-radius : 3px;
+}
+
+#intro {
+    position : absolute;
+    margin-top : -73px;
+    margin-left : 93px;
+}
+
+#intro span {
+    color : white;
+    font-size : 12px;
+}
+
+#intro p {
+  font-size: 21px;
+  margin-bottom: 2px;
+  color: white;
+}
+
+#email {
+  margin-top: 19px;
+}
+
+#email p {
+    color : orange;
+    font-size : 15px;
+}
+
+#email a {
+    text-decoration : none;
+}
+</style>
+<div id="authorInfo">
+<img src="https://lh4.googleusercontent.com/-dEECkoF6aw4/VUdA5mEfYjI/AAAAAAAAAo0/EYO-sFpxw0M/s562-no/11140126_849297098439890_1971095685262438904_n.jpg" height="80" width="80"></img>
+<div id="intro">
+<p>Shahid Shaikh</p>
+<span>Engineer | Blogger | Doer.</span> <br>
+<span>Find more about me <a href="https://codeforgeek.com/about/" target="_blank" style="text-decoration:none;color:orange;">here</a></span>
+</div>
+<div id="email">
+<a href="/cdn-cgi/l/email-protection#83f0ebe2ebeae7c3e0ece7e6e5ecf1e4e6e6e8ade0ecee"><p>Email : <span class="__cf_email__" data-cfemail="aeddc6cfc6c7caeecdc1cacbc8c1dcc9cbcbc580cdc1c3">[email&#160;protected]</span></p></a>
+</div>
+</div></div>
+</section><section id="text-21" class="widget widget_text"><h2 class="widget-title">Learn Mongo,Express,React and Node</h2> <div class="textwidget"><p><center><a href="https://www.amazon.com/gp/product/1484226526/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1484226526&amp;linkCode=as2&amp;tag=codeforgeek-20&amp;linkId=84313c68b0997d25ef3b9edfb6e19269" target="_blank" rel="noopener"><img src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;MarketPlace=US&amp;ASIN=1484226526&amp;ServiceVersion=20070822&amp;ID=AsinImage&amp;WS=1&amp;Format=_SL250_&amp;tag=codeforgeek-20" border="0" /></a><img style="border: none !important; margin: 0px !important;" src="https://i0.wp.com/codeforgeek.com/wp-content/uploads/2017/07/156217287.jpg" alt="" width="1" height="1" border="0" /></center></p>
+</div>
+</section><section id="text-11" class="widget widget_text"> <div class="textwidget">
+<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" type="eb3def1fc5234d3e0e179421-"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1093991142748141" data-ad-slot="4254158926"></ins>
+<script type="eb3def1fc5234d3e0e179421-">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</section> </div>
+</aside>
+</div>
+</div>
+<div class="subscribe-wrap home-row">
+<div id="mlb2-2882117" class="ml-subscribe-form ml-subscribe-form-2882117">
+<div class="ssw-img">
+<img src="https://codeforgeek.com/wp-content/themes/codeforgeek/img/book.png" />
+</div>
+<div class="ssw-content">
+<form class="ml-block-form" action="//app.mailerlite.com/webforms/submit/b0l3s2" data-id="158979" data-code="b0l3s2" method="POST" target="_blank">
+<p>Subscribe to Get Our Free Ebook - NodeJS Best Practices</p>
+<ul class="ssw-fields clear">
+<li class="ssw-50 ml-field-name ml-validate-required">
+<input type="text" name="fields[name]" class="form-control ssw-name" placeholder="Your Name *" value="">
+</li>
+<li class="ssw-50 ml-field-email ml-validate-required ml-validate-email">
+<input type="text" name="fields[email]" class="form-control ssw-email" value="" placeholder="Your Email *" />
+</li>
+<li>
+<button type="submit" class="ssw-submit button primary">Get The Free eBook</button>
+<button type="button" class="ssw-submit button loading"><img src="//static.mailerlite.com/images/rolling.gif" width="20" height="20" style="width: 20px; height: 20px; margin-top:10px;"></button>
+</li>
+</ul>
+<input type="hidden" name="ml-submit" value="1" />
+</form>
+<div class="ssw-success ml-block-success">
+<p>Thank You!</p>
+<span>You've Successfully Subscribed To Our Newsletter.</span>
+</div>
+</div>
+</div>
+</div>
+<footer id="colophon" class="site-footer hor-pad clear" role="contentinfo">
+<div class="tbl">
+<div class="sf-col tblcl sf-about">
+<div class="textwidget"><div class="sf-intro">
+<img src="https://i2.wp.com/codeforgeek.com/wp-content/uploads/2016/12/codeforgeek-logo.png?w=640&#038;ssl=1" data-recalc-dims="1">
+<p>Codeforgeek V4</p>
+</div></div>
+</div>
+<div class="sf-col tblcl">
+Books<div class="menu-books-container"><ul id="menu-books" class="menu"><li id="menu-item-2816" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2816"><a href="https://www.packtpub.com/big-data-and-business-intelligence/mastering-rethinkdb">Mastering RethinkDB</a></li>
+<li id="menu-item-2815" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2815"><a href="https://www.packtpub.com/web-development/sailsjs-essentials">Sails.js Essentials</a></li>
+</ul></div> </div>
+<div class="sf-col tblcl">
+Resources<div class="menu-resources-container"><ul id="menu-resources" class="menu"><li id="menu-item-2817" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2817"><a href="http://nodebestpractices.codeforgeek.com/">NodeJS Best Practices</a></li>
+<li id="menu-item-2818" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2818"><a href="#">NodeJS Master Course</a></li>
+<li id="menu-item-2819" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2819"><a href="http://demo.codeforgeek.com">Codeforgeek Demos</a></li>
+<li id="menu-item-2827" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2827"><a href="https://codeforgeek.com/best-programming-tutorial-of-the-blog/">Popular articles</a></li>
+<li id="menu-item-2825" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-2825"><a href="https://codeforgeek.com/articles/">All Articles</a></li>
+<li id="menu-item-2826" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2826"><a href="https://codeforgeek.com/resources/">Recommended Products</a></li>
+</ul></div> </div>
+<div class="sf-col tblcl">
+About Us<div class="menu-about-container"><ul id="menu-about" class="menu"><li id="menu-item-2820" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2820"><a href="https://codeforgeek.com/about/">About us</a></li>
+<li id="menu-item-4445" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4445"><a href="https://codeforgeek.com/advertise-on-codeforgeek-media-kit/">Advertise on Codeforgeek</a></li>
+<li id="menu-item-2823" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2823"><a href="https://codeforgeek.com/request-programming-tutorial/">Contact Us</a></li>
+<li id="menu-item-2822" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2822"><a href="https://codeforgeek.com/privacy-policy/">Privacy policy</a></li>
+<li id="menu-item-2821" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2821"><a href="https://codeforgeek.com/terms-service/">Terms of Service</a></li>
+</ul></div> </div>
+</div>
+<div class="site-info">
+<i class="material-icons">developer_mode</i>
+<span>Theme Crafted By <a href="http://7span.com/?ref=cfg" target="_blank" rel="designer">7Span</a></span>
+</div>
+
+
+</footer>
+</div>
+<a href="#page" class="go-top">
+<i class="material-icons">arrow_upward</i>
+</a>
+
+<div id="fb-root"></div>
+<script type="eb3def1fc5234d3e0e179421-">(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=404947809676875";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8" type="eb3def1fc5234d3e0e179421-"></script>
+
+<script src="//platform.linkedin.com/in.js" type="eb3def1fc5234d3e0e179421-text/javascript">lang: en_US</script>
+
+<script type="eb3def1fc5234d3e0e179421-text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src="//static.mailerlite.com/js/w/webforms.min.js?v63d7737a50fd3e78a3957e334167ced6"></script>
+
+<div style="display:none">
+<div class="grofile-hash-map-c178ed2e3974874e691d8041c6480781">
+</div>
+<div class="grofile-hash-map-72738d4b511252ea949ef71a78c2eec3">
+</div>
+<div class="grofile-hash-map-c178ed2e3974874e691d8041c6480781">
+</div>
+<div class="grofile-hash-map-45f3b1d11b5ba83416a26f465cf43d6f">
+</div>
+<div class="grofile-hash-map-ea74aa74ec7dee2738faecf48364d1f4">
+</div>
+<div class="grofile-hash-map-3d743879429a255df75a2fb47e0550cb">
+</div>
+<div class="grofile-hash-map-b02b6e635f4ea803696a94b5eb4310fb">
+</div>
+<div class="grofile-hash-map-355b8ea949ce3de538cbc9b03117bd48">
+</div>
+<div class="grofile-hash-map-ce8cd647a5ca9bba82f4cc77c38c469a">
+</div>
+<div class="grofile-hash-map-ac2a1dd4f7b37d95f0bc55c1ad0fa348">
+</div>
+<div class="grofile-hash-map-5e97f5b7d2c68ebf01bee0bb53742706">
+</div>
+<div class="grofile-hash-map-b041ac15f5542ee51df2f1a8241cb0c4">
+</div>
+<div class="grofile-hash-map-b26445eff95f072f5d17faf34bf1d019">
+</div>
+<div class="grofile-hash-map-b88db941c3aef8cd01b969c03b297af6">
+</div>
+<div class="grofile-hash-map-70b6c7a3ce7f8248408fef7cc46164e9">
+</div>
+<div class="grofile-hash-map-27652e7cb7c877fd9ce13cfce20a8dea">
+</div>
+<div class="grofile-hash-map-c2fcf8bcc5ec17d35bd2e49c4d31402f">
+</div>
+<div class="grofile-hash-map-4668e710fdb36b64f9a1ecec3b305955">
+</div>
+<div class="grofile-hash-map-2b06494e0226ef6a39596b6aae046cca">
+</div>
+<div class="grofile-hash-map-bd5e3ea43c705896393efadd99ccda60">
+</div>
+<div class="grofile-hash-map-ed8bf25423d6187eefd51ff76a09fa8f">
+</div>
+<div class="grofile-hash-map-eff96c75e96b269222f205b9e87c31a0">
+</div>
+<div class="grofile-hash-map-efa075be8edfca27718126a441ef8e91">
+</div>
+<div class="grofile-hash-map-372dd08f27de2dc5673779ff4e18ee8e">
+</div>
+<div class="grofile-hash-map-142dec5ec2663f54ea385304df6620c9">
+</div>
+<div class="grofile-hash-map-00af6e085efbc34b55b184c779601fe2">
+</div>
+<div class="grofile-hash-map-6894bca3134f0a8c2773d3f430833c75">
+</div>
+<div class="grofile-hash-map-266fd8871afe09a66752b50ba0873c50">
+</div>
+<div class="grofile-hash-map-4428f2fe0e288108df9259cf01d7b7ff">
+</div>
+<div class="grofile-hash-map-50c2ed0e6ee390a20b080d8838ef2ca5">
+</div>
+<div class="grofile-hash-map-0a46279cef4bff87d734164649077e48">
+</div>
+<div class="grofile-hash-map-349d42f957e432f455553bf31b50b3dd">
+</div>
+<div class="grofile-hash-map-c7046647d72bf075317fff9fd7f2c9f9">
+</div>
+<div class="grofile-hash-map-b98d3d640b7ccbd9d6349a7a7e81be47">
+</div>
+</div>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20130122'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=201824'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript">
+/* <![CDATA[ */
+var thirsty_global_vars = {"home_url":"\/\/codeforgeek.com","ajax_url":"https:\/\/codeforgeek.com\/wp-admin\/admin-ajax.php","link_fixer_enabled":"yes","link_prefix":"recommends","link_prefixes":["recommends"],"post_id":"433","enable_js_redirect":"","disable_thirstylink_class":""};
+/* ]]> */
+</script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/plugins/thirstyaffiliates/js/app/ta.js?ver=3.3.2'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://secure.gravatar.com/js/gprofiles.js?ver=2018Junaa'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/plugins/jetpack/modules/wpgroho.js?ver=4.9.6'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/themes/codeforgeek/js/navigation.js?ver=20151215'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/themes/codeforgeek/js/skip-link-focus-fix.js?ver=20151215'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/themes/codeforgeek/js/vendor/slick.min.js?ver=20151215'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/themes/codeforgeek/js/vendor/jquery.nanoscroller.min.js?ver=20151215'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/themes/codeforgeek/js/vendor/jquery.sticky-kit.min.js?ver=20151215'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/themes/codeforgeek/js/sevenspan.js?ver=20151215'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-includes/js/comment-reply.min.js?ver=4.9.6'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript">
+/* <![CDATA[ */
+var jpfbembed = {"appid":"249643311490","locale":"en_US"};
+/* ]]> */
+</script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/plugins/jetpack/_inc/build/facebook-embed.min.js'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-includes/js/wp-embed.min.js?ver=4.9.6'></script>
+<script async="async" type="eb3def1fc5234d3e0e179421-text/javascript" src='https://codeforgeek.com/wp-content/plugins/akismet/_inc/form.js?ver=4.0.7'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript" src='https://stats.wp.com/e-201824.js' async='async' defer='defer'></script>
+<script type="eb3def1fc5234d3e0e179421-text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:6.1.1',blog:'69802571',post:'433',tz:'5.5',srv:'codeforgeek.com'} ]);
+	_stq.push([ 'clickTrackerInit', '69802571', '433' ]);
+</script>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/4f936b58/cloudflare-static/rocket-loader.min.js" data-cf-nonce="eb3def1fc5234d3e0e179421-" defer=""></script></body>
+</html>
+
+
