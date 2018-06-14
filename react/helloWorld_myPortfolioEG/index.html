@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>My Portfolio</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+   
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    
+
+    <script type="text/babel">
+      const NavBar = ()=>{
+        //  Functional components just return JSX directly (no render())
+            return(
+              <nav>
+                <a href="https://facebook.com">Facebook</a>
+                <a href="https://instagram.com">Instagram</a>
+              </nav>
+            )
+      }
+
+      const App = () => {
+        return(
+          <div>
+            <NavBar />
+            <h1 style={{color: 'red'}}>My portfolio!</h1>
+            <p className="foo">Paragraph</p>
+            <Project title="Zombie app"/>
+            <Project title="Portfolio app"/>
+            <Project title="Two-sided marketplace app"/>
+            <Project title="React app"/>
+            </div>
+        )
+      }
+
+      const Project = (props) => {
+        return(
+          <div>
+            <h3>{props.title}</h3>
+            <p>This is my project</p>
+          </div>
+        )
+      }
+
+      ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+      );
+    </script>
+</body>
+
+</html>
