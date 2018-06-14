@@ -43,16 +43,20 @@ app.get('/enquiries', async (req, res)=>{
       <td>${enq.phone}</td>
       <td>${enq.message}</td>
       <td>${enq._id}</td>
-      <td><button onclick="deleteEnq(enq._id)">Delete</button></td>
+      <td><button onclick="fetch('/enquiries/${enq._id}', {method: 'delete'}).then(()=>{location.reload()})">Delete</button></td>
       </tr>`
     }
     html += '</table>'
     res.send(html)
 })
 
-function deleteEnq(enqID){
-   Enquiry.deleteOne({_id:ObjectId(`${enqID}`)})
-}
+app.delete('/enquiries/:id', async (req, res)=>{
+    Enquiry.deleteOne({_id: req.params.id}).then(()=>{
+        res.send('Deleted')
+    })
+  
+})
+
 
 app.get('/enquiries/:id', async (req, res) => {
     const enq = await Enquiry.find({_id: req.params.id})
